@@ -64,8 +64,12 @@ tail -f log_wiki_assistant.txt
 # export PYTHONPATH=/opt/workspaces/wikipedia_assistant/ && nohup /bin/python3 /opt/workspaces/wikipedia_assistant/web_service/app.py > /opt/workspaces/log_wiki_assistant.txt &
 
 
-# To run the ETL pipeline job
+# To run the ETL pipeline job manually
 #
-# mv log_etl.txt archive/log_etl_prev.txt
 # export PYTHONPATH=/opt/workspaces/wikipedia_assistant/ && nohup /bin/python3 /opt/workspaces/wikipedia_assistant/etl/run_etl_pipeline.py > /opt/workspaces/log_etl.txt &
 
+
+# To schedule ETL job to run daily at 2 AM - Job checks if there is a new wiki dump and starts ETL if there is
+#
+# Insert into crontab -e following
+# 0 2 * * * export PYTHONPATH=/opt/workspaces/wikipedia_assistant/ && nohup /bin/python3 /opt/workspaces/wikipedia_assistant/etl/run_etl_pipeline.py > /opt/workspaces/log_etl.txt
