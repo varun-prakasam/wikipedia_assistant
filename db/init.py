@@ -26,5 +26,4 @@ def init_database(init_sql_script_path=None):
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    init_database(os.path.join('/Users/varunprakasam/PycharmProjects/wikipedia_assistant/db/sql/',
-                               'initialize_wiki_db.sql'))
+    init_database()

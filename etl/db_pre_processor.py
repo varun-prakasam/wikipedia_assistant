@@ -41,6 +41,5 @@ class DBPreProcessor:
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    f_path = '/Users/varunprakasam/PycharmProjects/wikipedia_assistant/etl/sql/pre_processing_most_outdated.sql'
-    db_pre_processor = DBPreProcessor(sql_script_path_mo=f_path)
+    db_pre_processor = DBPreProcessor()
     db_pre_processor.run_pre_processing()
