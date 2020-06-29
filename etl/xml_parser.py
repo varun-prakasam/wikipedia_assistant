@@ -64,7 +64,7 @@ class WikiXMLParser:
                     found_first_page = True
 
                 if cnt > 0 and record['page_namespace'] in ('0', '1'):
-                    logging.info(f'Assembling record for page {num_pages_parsed + 1}')
+                    # logging.info(f'Assembling record for page {num_pages_parsed + 1}')
 
                     if ':' in record['page_title']:
                         page_title = ':'.join(record['page_title'].split(':')[1:])
