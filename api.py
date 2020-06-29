@@ -21,7 +21,7 @@ def get_most_outdated_page(category, as_dict=False, as_json=False):
     con = MariaDBConnector()
     category_parsed = category.replace(' ', '_').lower()
 
-    query = f"SELECT * FROM most_outdated_page " \
+    query = f"SELECT * FROM {MOST_OUTDATED_PAGE} " \
             f"WHERE LOWER(CONVERT(category_title, VARCHAR(255))) = '{category_parsed}'"
     df = con.execute(query=query)
 
@@ -51,7 +51,8 @@ def get_page_links_by_position_on_page(page_title, as_dict=False, as_json=False)
                  f"pl_title AS link_page_title, " \
                  f"pl_namespace AS link_page_namespace, " \
                  f"pl_position AS link_position_on_page " \
-                 f"FROM {PAGE_LINK_POSITIONS} WHERE pl_from = {page_id}"
+                 f"FROM {PAGE_LINK_POSITIONS} WHERE pl_from = {page_id} " \
+                 f"ORDER BY link_position_on_page ASC"
         df = con.execute(query=query2, as_df=True)
 
     else:

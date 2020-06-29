@@ -21,7 +21,6 @@ def api_1():
     except:
         return 'The SQL query you entered is either invalid or did not work'
 
-    # return render_template('api_1_result.html', **locals())
     return jsonify(result)
 
 

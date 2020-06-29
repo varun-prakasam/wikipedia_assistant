@@ -7,8 +7,8 @@ import datetime as dt
 from functools import lru_cache
 
 from db.maria import MariaDBConnector
-from etl.utils import extract_gzip_file, replace_string_in_file, get_simple_wiki_url, extract_bz2_file
-from etl.constants import DUMP_DOWNLOAD_DIR, SIMPLE_WIKI_BASE_URL, PROD_TABLE_NAMES
+from etl.utils import extract_gzip_file, get_simple_wiki_url, extract_bz2_file
+from etl.constants import DUMP_DOWNLOAD_DIR, PROD_TABLE_NAMES
 
 
 class DumpDownloader:
@@ -93,6 +93,6 @@ class DumpDownloader:
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    downloader = DumpDownloader()
+    downloader = DumpDownloader(dump_date=dt.date(2020, 6, 20))
     ret = downloader.download_dump()
     print(ret)

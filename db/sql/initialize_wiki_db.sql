@@ -20,7 +20,7 @@ INSERT INTO wikipedia_etl.production_table_names VALUES
 ('redirect',            'simplewiki-{YYYYMMDD}-redirect.sql.gz'),
 ('sites',               'simplewiki-{YYYYMMDD}-sites.sql.gz'),
 ('site_stats',          'simplewiki-{YYYYMMDD}-site_stats.sql.gz'),
-('templatelinks', 'simplewiki-{YYYYMMDD}-templatelinks.sql.gz'),
+('templatelinks',       'simplewiki-{YYYYMMDD}-templatelinks.sql.gz'),
 ('user_groups',         'simplewiki-{YYYYMMDD}-user_groups.sql.gz'),
 ('pagelinkpositions',   'simplewiki-{YYYYMMDD}-pages-meta-current.xml.bz2');
 GO
