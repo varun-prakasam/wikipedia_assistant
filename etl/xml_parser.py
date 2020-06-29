@@ -142,7 +142,7 @@ class WikiXMLParser:
             self._write_parsed_data_to_db(last_modified=last_modified, page_links=page_links)
 
         logging.info('Finished parsing XML file. Summary:')
-        logging.info(f'Total {num_pages_parsed} pages parsed for last_modfied/page_links data in {num_batches} batches')
+        logging.info(f'{num_pages_parsed} pages parsed for last_modfied & page_links data in {num_batches} batches')
         logging.info(f'Total {self.num_last_modified_records} records appended to {self.last_modified_table_name}')
         logging.info(f'Total {self.num_page_links_records} records appended to {self.page_links_table_name}')
         gc.collect()
