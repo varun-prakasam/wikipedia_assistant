@@ -7,6 +7,7 @@
 <body>
 <h1>Wikipedia Assistant</h1>
 <h3>Query Simple Wiki Tables in API 1 and also get some additional insights through API 2 & 3</h3>
+<hr style="border: 2px solid red;" />
 <br>
 
 <form action="/api_1_result" method="post">
@@ -14,9 +15,9 @@
   <input type="text" style="height:30px; width:1200px; word-break:break-all;" id="sql_query" name="sql_query" value="SELECT * FROM page WHERE page_id BETWEEN 1 AND 10"><br>
     <p>The tables and their schema follow the doumentation from Wikimedia <a href="https://meta.wikimedia.org/wiki/Data_dumps/What%27s_available_for_download#Database_tables">here</a></p>
     <p>I have added additional tables to provide extra insights, check them out!</p>
-  <p><b>pagetimestamps: </b>The latest modified timestamp of each page [SELECT page_id, last_modified FROM pagetimestamps WHERE page_id BETWEEN 1 AND 100]</p>
-  <p><b>pagelinkpositions: </b>The position of each link on a page [SELECT pl_from, pl_title, pl_position FROM pagelinkpositions WHERE page_id=1] </p>
-  <p><b>most_outdated_page: </b>The most outdated page for each category -> Outdatedness = MAX(page_link_modified_time) - (page_modified_time) [SELECT * FROM most_outdated_page WHERE category_title='Sports']</p>
+  <p>&#9;<b>pagetimestamps: </b>The latest modified timestamp of each page [SELECT page_id, last_modified FROM pagetimestamps WHERE page_id BETWEEN 1 AND 100]</p>
+  <p>&#9;<b>pagelinkpositions: </b>The position of each link on a page [SELECT pl_from, pl_title, pl_position FROM pagelinkpositions WHERE pl_from=1] </p>
+  <p>&#9;<b>most_outdated_page: </b>The most outdated page for each category -> Outdatedness = MAX(page_link_modified_time) - (page_modified_time) [SELECT * FROM most_outdated_page WHERE category_title='Sports']</p>
   <input type="submit" value="Submit">
 </form>
 
