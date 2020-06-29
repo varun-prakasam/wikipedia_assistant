@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, jsonify
+import logging
+from flask import Flask, render_template, request, jsonify
 
 from api import query_wiki_assistant, get_most_outdated_page, get_page_links_by_position_on_page
 
@@ -12,9 +13,8 @@ def index():
 
 @app.route("/api_1_result/", methods=['POST'])
 def api_1():
-    res = '123'
     sql_query = request.form['sql_query']
-    print("The query is '" + sql_query + "'")
+    logging.info(f'sql_query: {sql_query}')
 
     try:
         result = query_wiki_assistant(sql_query=sql_query, as_dict=True)
@@ -27,9 +27,8 @@ def api_1():
 
 @app.route("/api_2_result/", methods=['POST'])
 def api_2():
-    r = '456'
     category = request.form['category']
-    print("The category is '" + category + "'")
+    logging.info(f'category: {category}')
 
     try:
         result = get_most_outdated_page(category=category, as_dict=True)
@@ -41,20 +40,15 @@ def api_2():
 
 @app.route("/api_3_result/", methods=['POST'])
 def api_3():
-    r = '789'
     page_title = request.form['page_title']
-    print("The page_title is '" + page_title + "'")
+    logging.info(f'page_title: {page_title}')
+
     try:
         result = get_page_links_by_position_on_page(page_title=page_title, as_dict=True)
     except:
         return 'The page title you entered is either invalid or did not work'
 
     return jsonify(result)
-
-
-# @app.route('/<string:page_name>/')
-# def render_static(page_name):
-#     return render_template('%s.html' % page_name)
 
 
 if __name__ == "__main__":
