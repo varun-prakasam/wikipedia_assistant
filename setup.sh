@@ -1,4 +1,4 @@
-# Bash script to execute on server after ssh'ing in:
+# Bash script to execute on new server after ssh'ing in:
 #
 # 1. Set up workspace directory with read-write permissions
 #
@@ -16,6 +16,8 @@ sudo chmod ugo+rw workspaces/
 
 cd workspaces/
 
+mkdir archive
+
 sudo yum -y install git
 
 git clone https://github.com/varun-prakasam/wikipedia_assistant.git
@@ -32,13 +34,13 @@ sudo pip3 install flask
 
 export PYTHONPATH=/opt/workspaces/wikipedia_assistant/
 
-# Optional step to initialize database - If database is already initialized with all meta tables and functional, then skip this step.
+# Optional step to initialize empty/new database. If database is already initialized with all meta tables, then skip this step.
 # python3 wikipedia_assistant/db/init.py
 
-nohup python3 wikipedia_assistant/web_service/app.py > log.txt &
+nohup python3 wikipedia_assistant/web_service/app.py > log_wiki_assistant.txt &
 
-# To view the app's log
-tail -f log.txt
+# To view the log
+tail -f log_wiki_assistant.txt
 
 
 # To kill background process running web service:
@@ -47,17 +49,23 @@ tail -f log.txt
 # kill -9 {PID}
 
 
-# To rerun app.py:
+# To rerun:
 #
-# export PYTHONPATH=/opt/workspaces/wikipedia_assistant/
-# nohup python3 wikipedia_assistant/web_service/app.py > log.txt &
+# mv log_wiki_assistant.txt archive/log_wiki_assistant_prev.txt
+# export PYTHONPATH=/opt/workspaces/wikipedia_assistant/ && nohup /bin/python3 /opt/workspaces/wikipedia_assistant/web_service/app.py > /opt/workspaces/log_wiki_assistant.txt &
 
 
-# To pull latest code and rerun app.py:
+# To pull latest code and rerun:
 #
 # cd wikipedia_assistant
 # git pull
 # cd ..
-# export PYTHONPATH=/opt/workspaces/wikipedia_assistant/
-# nohup python3 wikipedia_assistant/web_service/app.py > log.txt &
+# mv log_wiki_assistant.txt archive/log_wiki_assistant_prev.txt
+# export PYTHONPATH=/opt/workspaces/wikipedia_assistant/ && nohup /bin/python3 /opt/workspaces/wikipedia_assistant/web_service/app.py > /opt/workspaces/log_wiki_assistant.txt &
+
+
+# To run the ETL pipeline job
+#
+# mv log_etl.txt archive/log_etl_prev.txt
+# export PYTHONPATH=/opt/workspaces/wikipedia_assistant/ && nohup /bin/python3 /opt/workspaces/wikipedia_assistant/etl/run_etl_pipeline.py > /opt/workspaces/log_etl.txt &
 
