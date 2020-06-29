@@ -28,13 +28,13 @@ class DumpDownloader:
     def tables(self):
         return list(self.all_tables.keys())
 
-    @lru_cache
+    @lru_cache()
     def get_filename(self, table):
         if table not in self.all_tables:
             raise RuntimeError(f'Table {table} is not valid. The list of valid tables are: {self.tables}')
         return self.all_tables[table].format(YYYYMMDD=dt.datetime.strftime(self.dump_date, '%Y%m%d'))
 
-    @lru_cache
+    @lru_cache()
     def get_download_url(self, table):
         base_url = get_simple_wiki_url(date=self.dump_date)
         return base_url + self.get_filename(table=table)
