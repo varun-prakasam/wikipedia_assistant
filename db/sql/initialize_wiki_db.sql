@@ -16,6 +16,12 @@ INSERT INTO wikipedia_etl.production_table_names VALUES
 ('category',            'simplewiki-{YYYYMMDD}-category.sql.gz'),
 ('page',                'simplewiki-{YYYYMMDD}-page.sql.gz'),
 ('pagelinks',           'simplewiki-{YYYYMMDD}-pagelinks.sql.gz'),
+('page_props',          'simplewiki-{YYYYMMDD}-page_props.sql.gz'),
+ ('redirect',            'simplewiki-{YYYYMMDD}-redirect.sql.gz'), 
+('sites',               'simplewiki-{YYYYMMDD}-sites.sql.gz'), 
+('site_stats',          'simplewiki-{YYYYMMDD}-site_stats.sql.gz'), 
+('templatelinks',       'simplewiki-{YYYYMMDD}-templatelinks.sql.gz'), 
+('user_groups',         'simplewiki-{YYYYMMDD}-user_groups.sql.gz'),
 ('pagelinkpositions',   'simplewiki-{YYYYMMDD}-pages-meta-current.xml.bz2');
 GO
 
