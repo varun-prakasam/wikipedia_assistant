@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wikipedia Assistant</title>
+</head>
+<body>
+<form action="/api_1_result" method="post">
+  <label for="sql_query"><b>API 1: Enter a SQL Query (eg. SELECT * FROM category ORDER BY cat_pages DESC LIMIT 20) for Wikipedia Assistant</b></label><br>
+  <input type="text" style="height:30px; width:1000px; word-break:break-all;" id="sql_query" name="sql_query" value="SELECT * FROM page WHERE page_id BETWEEN 1 AND 10"><br>
+    <p>The schema follows ...</p>
+  <input type="submit" value="Submit">
+</form>
+
+<br><br><br>
+
+<form action="/api_2_result" method="post">
+  <label for="category"><b>API 2: Enter a Category (eg. Sports) to get most outdated page for that Category</b></label><br>
+  <input type="text" style="width:300px;" id="category" name="category" value="Countries"><br>
+    <p>The top 10 categories by volume are [Living_people, Commons_category_link_is_on_Wikidata, Pages_translated_from_English_Wikipedia, Coordinates_on_Wikidata, People_stubs, Articles_with_hCards , United_States_geography_stubs, Commons_category_link_from_Wikidata, American_people_stubs, France_geography_stubs].</p>
+    <p>Please note that Wiki replaces spaces in categories with underscores. Eg. prime number -> prime_number</p>
+  <input type="submit" value="Submit">
+</form>
+
+<br><br><br>
+
+<form action="/api_3_result" method="post">
+  <label for="page_title"><b>API 3: Enter a page title (eg. Germany) to get list of links on that page ordered by their position on the page</b></label><br>
+  <input type="text" style="width:300px;" id="page_title" name="page_title" value="Christianity"><br>
+    <p>Some example page titles are [Air, Basketball, Chocolate, Decimal, Estonia, Fall, Greenland, etc.]</p>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
