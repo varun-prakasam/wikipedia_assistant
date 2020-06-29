@@ -7,7 +7,8 @@ import requests
 import datetime as dt
 from dateutil.relativedelta import relativedelta as rd
 
-from etl.constants import SIMPLE_WIKI_BASE_URL
+from db.maria import MariaDBConnector
+from etl.constants import SIMPLE_WIKI_BASE_URL, ETL_JOB_LOG
 
 
 def extract_gzip_file(gzip_file_path, output_path=None, delete_existing=False):
@@ -92,6 +93,16 @@ def get_simple_wiki_latest_dump_date():
             resp = requests.get(curr_url)
 
         return curr_date - rd(days=1)
+
+
+def get_latest_loaded_date():
+    con = MariaDBConnector()
+    df = con.execute(f'SELECT MAX(wiki_dump_date) AS max_date FROM {ETL_JOB_LOG}')
+
+    if len(df) > 0:
+        return df.max_date[0]
+    else:
+        return None
 
 
 def get_simple_wiki_url(date):

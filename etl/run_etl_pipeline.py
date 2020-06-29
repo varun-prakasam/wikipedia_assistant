@@ -7,7 +7,7 @@ from etl.constants import ETL_JOB_LOG
 from etl.xml_parser import WikiXMLParser
 from etl.dump_downloader import DumpDownloader
 from etl.db_pre_processor import DBPreProcessor
-from etl.utils import get_simple_wiki_latest_dump_date
+from etl.utils import get_simple_wiki_latest_dump_date, get_latest_loaded_date
 
 
 def get_etl_job_id():
@@ -26,6 +26,12 @@ def main(wiki_dump_date=None, fail_upon_errors=True):
 
     if wiki_dump_date is None:
         dump_date = get_simple_wiki_latest_dump_date()
+        latest_loaded_date = get_latest_loaded_date()
+
+        if dump_date <= latest_loaded_date:
+            logging.info(f'Latest dump date from wiki is {dump_date} and latest loaded date is {latest_loaded_date}')
+            logging.info('So not running ETL routine since there is no new dump available')
+            return
     else:
         dump_date = wiki_dump_date
 
