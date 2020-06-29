@@ -35,7 +35,7 @@ sudo pip3 install flask
 export PYTHONPATH=/opt/workspaces/wikipedia_assistant/
 
 # Optional step to initialize empty/new database. If database is already initialized with all meta tables, then skip this step.
-# python3 wikipedia_assistant/db/init.py
+# python3 wikipedia_assistant/db/init.py > log_init.txt
 
 nohup python3 wikipedia_assistant/web_service/app.py > log_wiki_assistant.txt &
 
